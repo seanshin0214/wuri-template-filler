@@ -4,7 +4,33 @@ WURI Foundation 혁신 프로그램 템플릿에 크롤링된 데이터를 자�
 
 ---
 
-## 사용 가이드 (처음 받은 사람용)
+## 설치 가이드 (최초 1회)
+
+### 필요한 프로그램
+
+| 프로그램 | 필수 여부 | 설치 방법 |
+|---------|----------|----------|
+| **Python 3.8+** | 필수 | https://www.python.org/downloads/ |
+| **python-docx** | 필수 | `pip install python-docx` |
+| **docxtpl** | 필수 | `pip install docxtpl` |
+| Microsoft Word | 권장 | 결과 파일 열람용 (없으면 한글, 구글독스로 가능) |
+
+### 설치 순서
+
+1. **Python 설치**
+   - https://www.python.org/downloads/ 에서 다운로드
+   - 설치 시 **"Add Python to PATH"** 체크 필수!
+
+2. **라이브러리 설치** (명령 프롬프트 또는 PowerShell에서)
+   ```
+   pip install python-docx docxtpl
+   ```
+
+3. **완료** - 이제 `WURI_실행.bat` 더블클릭 가능
+
+---
+
+## 사용 가이드
 
 ### 1단계: 폴더 구조 확인
 
@@ -91,19 +117,6 @@ WURI_Filled_20251224_180000.docx  ← 이게 완성본!
 1. `Data.docx`에 데이터 준비
 2. `WURI_실행.bat` 더블클릭
 3. `WURI_Filled_*.docx` 확인
-
----
-
-## 요구사항
-
-- Python 3.8+
-- 필요 라이브러리: `python-docx`, `docxtpl`
-
-### 설치 (최초 1회)
-
-```bash
-pip install python-docx docxtpl
-```
 
 ---
 
