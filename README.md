@@ -2,54 +2,110 @@
 
 WURI Foundation 혁신 프로그램 템플릿에 크롤링된 데이터를 자동으로 채워넣는 도구
 
+---
+
+## 사용 가이드 (처음 받은 사람용)
+
+### 1단계: 폴더 구조 확인
+
+```
+WURI_Automation/
+├── WURI_실행.bat          ← 이거 더블클릭!
+├── Data.docx              ← 여기에 크롤링 데이터 넣기
+├── template_original.docx ← WURI 빈 템플릿 (수정 X)
+├── fill_wuri_template.py  ← 자동화 스크립트 (수정 X)
+└── ...
+```
+
+---
+
+### 2단계: Data.docx 준비
+
+`Data.docx`를 열면 이런 형식입니다:
+
+```
+Writer's Profile
+├── University name: MIT
+├── Full name: (작성자 이름)
+├── Email address: ...
+
+Program Profile
+├── Program name: Amogy (Startup)
+├── Category: C7: University-Based...
+├── School/College: ...
+
+Summary of Program
+├── Abstract: ...
+
+Details of Program
+├── 1. Planning
+│   ├── Long-term Goals: ...
+│   ├── Short-term Targets: ...
+├── 2. Doing
+│   ├── Launch date: ...
+├── 3. Seeing
+│   ├── Impacts on students: ...
+└── 4. Future Planning
+```
+
+**새 프로그램 데이터로 바꾸려면:**
+- `Data.docx` 열기
+- 각 항목에 새로운 크롤링 데이터 붙여넣기
+- 저장
+
+---
+
+### 3단계: 실행
+
+`WURI_실행.bat` **더블클릭**
+
+```
+============================================================
+  WURI Template Auto-Filler
+============================================================
+
+[1/3] Data.docx에서 데이터 추출 중...
+[2/3] 플레이스홀더 템플릿 확인 중...
+[3/3] 템플릿에 데이터 채우는 중...
+
+============================================================
+  완료! 결과 파일이 생성되었습니다.
+============================================================
+```
+
+---
+
+### 4단계: 결과 확인
+
+폴더에 새 파일 생성됨:
+```
+WURI_Filled_20251224_180000.docx  ← 이게 완성본!
+```
+
+더블클릭해서 Word로 열고 확인
+
+---
+
+## 요약
+
+1. `Data.docx`에 데이터 준비
+2. `WURI_실행.bat` 더블클릭
+3. `WURI_Filled_*.docx` 확인
+
+---
+
 ## 요구사항
 
 - Python 3.8+
 - 필요 라이브러리: `python-docx`, `docxtpl`
 
-## 설치
+### 설치 (최초 1회)
 
 ```bash
-# 저장소 클론
-git clone https://github.com/YOUR_USERNAME/wuri-template-filler.git
-cd wuri-template-filler
-
-# 의존성 설치
-pip install -r requirements.txt
+pip install python-docx docxtpl
 ```
 
-## 사용법
-
-### 1. 파일 준비
-- `Data.docx`: 크롤링된 데이터 (WURI 형식으로 정리된 상태)
-- `template_original.docx`: WURI 빈 템플릿
-
-### 2. 실행
-```bash
-python fill_wuri_template.py
-```
-
-### 3. 결과
-- `WURI_Filled_YYYYMMDD_HHMMSS.docx` 파일 생성
-
-## 파일 구조
-
-```
-wuri-template-filler/
-├── README.md
-├── requirements.txt
-├── fill_wuri_template.py      # 메인 스크립트
-├── Data.docx                  # 입력 데이터 (예시)
-├── template_original.docx     # WURI 템플릿
-└── template_with_placeholders.docx  # 자동 생성됨
-```
-
-## 작동 원리
-
-1. **데이터 추출**: `Data.docx`에서 정규식으로 필드별 데이터 파싱
-2. **템플릿 준비**: 원본 템플릿에 `{{변수명}}` 플레이스홀더 추가
-3. **데이터 매핑**: `docxtpl` (Jinja2) 라이브러리로 데이터 채우기
-4. **결과 저장**: 타임스탬프 포함된 새 파일 생성
+---
 
 ## 지원 필드
 
@@ -62,16 +118,7 @@ wuri-template-filler/
 | Seeing | impacts_students, responses_industry, measurable_output, ... |
 | Future | future_planning |
 
-## 커스터마이징
-
-### 새 필드 추가
-`fill_wuri_template.py`의 `extract_data_from_docx()` 함수에서:
-```python
-data['new_field'] = extract_section(full_text, r'패턴(.+?)(?=종료패턴|$)')
-```
-
-### 플레이스홀더 수동 편집
-`template_with_placeholders.docx`를 Word에서 열어 `{{변수명}}` 위치 조정 가능
+---
 
 ## 라이선스
 
